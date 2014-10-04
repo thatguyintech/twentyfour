@@ -1,7 +1,6 @@
 <div class="container">
   <h1>Twenty-four.</h1>
-  <p>Your numbers are: 1, 2, 3, 4.</p>
-  <p>How can you get 24? Use only:</p>
+  <p>Form 24 using the following numbers! Use only:</p>
   <ul>
     <li>Addition: <code>+</code></li>
     <li>Subtraction: <code>-</code></li>
@@ -9,6 +8,10 @@
     <li>Division: <code>/</code></li>
     <li>Grouping parentheses: <code>(</code>, <code>)</code></li>
   </ul>
+
+  <p>Your numbers are...</p>
+  <p id="randnums"></p>
+
   <form role="form">
     <div class="form-group" id="expr-div">
       <label for="expression">Expression</label>
@@ -24,3 +27,4 @@
 <script src="js/bootstrap.min.js"></script>
 <script src="js/expr-parser.js"></script>
 <script src="js/expr-respond.js"></script>
+<script src="js/generate-nums.js"></script>
