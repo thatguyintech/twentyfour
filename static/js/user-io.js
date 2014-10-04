@@ -18,7 +18,7 @@ function notEmpty(string) {
     return string.length > 0;
 }
 
-$("#pass-form").submit(function () {
+$("#pass-submit").click(function () {
     $("#expr-input").val("");
     alert("Weak.");
     socket.emit('num_request_pass');
@@ -56,10 +56,10 @@ $("#expr-form").submit(function () {
                 if (Math.abs(exprval - 24) < epsilon) {
                     var endTime = Date.now();
                     var seconds = (endTime - startTime) / 1000;
+                    alert("Good job!\nYou took " + seconds + " seconds.");
                     $("#expr-input").val("");
                     socket.emit('num_request_success',
                                 { streak: parseInt($("#streak").text()) });
-                    alert("Good job!\nYou took " + seconds + " seconds.");
                 } else {
                     alert(exprval + " is not 24. Try again!");
                 }
