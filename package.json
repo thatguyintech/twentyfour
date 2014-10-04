@@ -1,12 +1,17 @@
 {
     "name": "twentyfour",
-    "description": "twentyfour",
     "version": "0.0.1",
+    "description": "the game of 24",
+    "main": "server.js",
     "private": true,
     "dependencies": {
         "express": "4.x",
         "express-handlebars": "1.1.x",
         "socket.io": "1.1.x"
-    }
+    },
+    "engines": {
+        "node": "0.10.x"
+    },
+    "license": "MIT"
 }
 
