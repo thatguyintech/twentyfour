@@ -6,7 +6,10 @@
  *
  */
 
+var startTime = 0;
+
 socket.on('num_response', function (data) {
+    startTime = Date.now();
     $("#randnums").text(data['nums']);
     $("#streak").text(data['streak']);
 });
@@ -51,10 +54,12 @@ $("#expr-form").submit(function () {
                 var exprval = parser.parse(expr.replace(space_re, ""));
                 var epsilon = 0.000001;
                 if (Math.abs(exprval - 24) < epsilon) {
+                    var endTime = Date.now();
+                    var seconds = (endTime - startTime) / 1000;
                     $("#expr-input").val("");
                     socket.emit('num_request_success',
                                 { streak: parseInt($("#streak").text()) });
-                    alert("Good job!");
+                    alert("Good job!\nYou took " + seconds + " seconds.");
                 } else {
                     alert(exprval + " is not 24. Try again!");
                 }
@@ -68,3 +73,4 @@ $("#expr-form").submit(function () {
     return false;
 });
 
+startTime = Date.now();
