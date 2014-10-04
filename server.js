@@ -21,10 +21,15 @@ app.get('/', function (req, res) {
 });
 
 io.on('connection', function (socket) {
-    socket.emit('num_response', { nums: util.getnums() });
-    socket.on('num_request', function (data) {
-        socket.emit('num_response', { nums: util.getnums() });
+    socket.emit('num_response', { nums: util.getnums(), streak: 0 });
+    socket.on('num_request_success', function (data) {
+        socket.emit('num_response', { nums: util.getnums(),
+                                      streak: data['streak'] + 1 });
     });
+    socket.on('num_request_pass', function (data) {
+        socket.emit('num_response', { nums: util.getnums(), streak: 0 });
+    });
+
 });
 
 http.listen(app.get('port'));

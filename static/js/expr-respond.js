@@ -7,20 +7,22 @@
  */
 
 socket.on('num_response', function (data) {
-    $("#randnums").text(data['nums'])
+    $("#randnums").text(data['nums']);
+    $("#streak").text(data['streak']);
 });
 
 function notEmpty(string) {
     return string.length > 0;
 }
 
-$("#pass").submit(function() {
+$("#pass-form").submit(function () {
     $("#expr-input").val("");
     alert("Weak.");
-    socket.emit('num_request');
+    socket.emit('num_request_pass');
+    return false;
 });
 
-$("#expr-form").submit(function() {
+$("#expr-form").submit(function () {
     var expr = $("#expr-input").val();
     var usedAllNumbers = true;
     if (expr.length > 0) {
@@ -50,19 +52,19 @@ $("#expr-form").submit(function() {
                 var epsilon = 0.000001;
                 if (Math.abs(exprval - 24) < epsilon) {
                     $("#expr-input").val("");
+                    socket.emit('num_request_success',
+                                { streak: parseInt($("#streak").text()) });
                     alert("Good job!");
-                    socket.emit('num_request');
                 } else {
-                    alert("Not 24. Try again!");
+                    alert(exprval + " is not 24. Try again!");
                 }
             } catch (ex) {
                 alert("Invalid expression. Try again!");
             }
         }
-        return false;
     } else {
         alert("Please enter a solution before submitting."); 
-        return false;
     }
+    return false;
 });
 
