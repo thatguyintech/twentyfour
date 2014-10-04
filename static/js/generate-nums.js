@@ -4,8 +4,15 @@ function notEmpty(str) {
 }
 $.get("etc/valid_combos.txt", function(data) {
     var rows = data.split("\n");
+
     var random = Math.floor(Math.random() * rows.length);
+    
     var nums = rows[random];
+    
+    while (nums == ""){
+        var random = Math.floor(Math.random()*rows.length);
+        nums = rows[random];
+    }
     nums = nums.split(" ");
     nums = nums.filter(notEmpty);
     // shuffle

@@ -11,6 +11,7 @@ function notEmpty(string) {
 }
 
 $("#expr-form").submit(function() {
+    
     var expr = $("#expr-input").val();
     var usedAllNumbers = true;
     if (expr.length > 0) {
@@ -30,7 +31,8 @@ $("#expr-form").submit(function() {
                      }
                 }
                 if (!found) {
-                    alert("You must use each number exactly once.");
+                    
+                    alert("You must use only the given numbers");
                     return false;
                 }
             } 
@@ -41,6 +43,9 @@ $("#expr-form").submit(function() {
                 var exprval = parser.parse(expr.replace(space_re, ""));
                 var epsilon = 0.000001;
                 if (Math.abs(exprval - 24) < epsilon) {
+                    var newCookie = parseInt(getCookie("streak"))+1;
+                    console.log(newCookie);
+                    setCookie("streak", newCookie);
                     alert("Good job!");
                     return true;
                 } else {
@@ -54,5 +59,41 @@ $("#expr-form").submit(function() {
         }
         // don't think this will be reached
         return false;
+    } else {
+        alert("Please enter a solution before submitting"); 
+        return false;
     }
 });
+
+
+$(window).unload(function() {
+   alert('Handler for .unload() called.');
+});
+
+
+
+//returns the cookie or something.
+function getCookie(cname) {
+  if (document.cookie == null) {
+     console.log("uninitialized");
+      return 0;
+  }
+  var name = cname + "=";
+  var ca = document.cookie.split(';');
+  for (var i = 0; i < ca.length;i++) {
+      var c = ca[i];
+      while (c.charAt(0)== ' ') {
+          c = c.substring(1);
+      }
+      if (c.indexOf(name)!=-1) {
+         var test = c.substring(name.length, c.length);
+         console.log(test);
+         return test;
+      }
+  }
+  console.log("woops"); 
+}
+function setCookie(cname, cvalue) {
+    document.cookie = cname+ "=" + cvalue;
+ }
+$("#streak").text(getCookie("streak"));
