@@ -9,6 +9,6 @@ $.get("etc/valid_combos.txt", function(data) {
         nums[j] = nums[i];
         nums[i] = temp;
     }
-    $("#randnums").text(A);
+    $("#randnums").text(nums);
 });
 
