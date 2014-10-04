@@ -19,7 +19,8 @@
   <body>
     <div class="container">
       <h1>Twenty-four.</h1>
-      <p>Your numbers are: 1, 2, 3, 4. How can you get 24? Use only:</p>
+      <p>Your numbers are: 1, 2, 3, 4.</p>
+      <p>How can you get 24? Use only:</p>
       <ul>
         <li>Addition: <code>+</code></li>
         <li>Subtraction: <code>-</code></li>
@@ -28,11 +29,11 @@
         <li>Grouping parentheses: <code>(</code>, <code>)</code></li>
       </ul>
       <form role="form">
-        <div class="form-group">
+        <div class="form-group" id="expr-div">
           <label for="expression">Expression</label>
-          <input type="text" class="form-control" id="expression">
+          <input type="text" class="form-control" id="expr-input">
         </div>
-        <button type="submit" class="btn btn-default">Submit</button>
+        <button type="submit" class="btn btn-default" id="expr-submit">Submit</button>
       </form>
     </div>
 
@@ -40,5 +41,7 @@
     <script src="static/js/jquery-2.1.1.min.js"></script>
     <!-- Include all compiled plugins (below), or include individual files as needed -->
     <script src="static/js/bootstrap.min.js"></script>
+    <script src="static/js/expr-parser.js"></script>
+    <script src="static/js/expr-respond.js"></script>
   </body>
 </html>

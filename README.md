@@ -1,4 +1,4 @@
 twentyfour
 ==========
 
-24
+A game in which you make 24.
