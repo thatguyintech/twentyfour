@@ -12,6 +12,9 @@ socket.on('num_response', function (data) {
     startTime = Date.now();
     $("#randnums").text(data['nums']);
     $("#streak").text(data['streak']);
+    if (parseInt($("#beststreak").text()) < data['streak']) {
+        $("#beststreak").text(data['streak']);
+    }
 });
 
 function notEmpty(string) {
@@ -55,9 +58,13 @@ $("#expr-form").submit(function () {
                 var epsilon = 0.000001;
                 if (Math.abs(exprval - 24) < epsilon) {
                     var endTime = Date.now();
-                    var seconds = (endTime - startTime) / 1000;
-                    alert("Good job!\nYou took " + seconds + " seconds.");
+                    var solveTime = (endTime - startTime) / 1000;
+                    alert("Good job!\nYou took " + solveTime + " seconds.");
                     $("#expr-input").val("");
+                    if (solveTime < parseFloat($("#fastest").text())
+                        || $("#fastest").text().charAt(0) == "\u221E") {
+                        $("#fastest").text(solveTime);
+                    }
                     socket.emit('num_request_success',
                                 { streak: parseInt($("#streak").text()) });
                 } else {
