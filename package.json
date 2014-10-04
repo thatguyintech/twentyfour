@@ -1,0 +1,11 @@
+{
+    "name": "twentyfour",
+    "description": "twentyfour",
+    "version": "0.0.1",
+    "private": true,
+    "dependencies": {
+        "express": "4.x",
+        "express-handlebars": "1.1.x"
+    }
+}
+
