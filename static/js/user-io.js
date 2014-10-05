@@ -37,6 +37,7 @@ $("#expr-form").submit(function () {
         var nums_used = expr.split(operation_re).filter(notEmpty);
         if (nums_used.length != 4) {
             alert ("You must use all four numbers.");
+            usedAllNumbers = false;
         } else {
             for (var i = 0; i < 4; i++) {
                 var found = false;
@@ -48,6 +49,8 @@ $("#expr-form").submit(function () {
                 }
                 if (!found) {
                     alert("You must use only the given numbers.");
+                    usedAllNumbers = false;
+                    break;
                 }
             } 
         }
